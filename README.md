@@ -10,6 +10,7 @@ to generate `glyphset.log` and `glyphset_math.log`. The two files may be a good 
 
 ## Acknowledgements
 
+- [Fira Math](https://github.com/firamath/firamath)
 - [Glyph 3](https://glyphsapp.com/)
 - [Glyphs OpenType MATH Plug-in](https://github.com/Nagwa-Limited-Community/Glyphs-MATH-Plugin)
 - [HarfBuzz](https://github.com/harfbuzz/harfbuzz)
