@@ -12,6 +12,8 @@ LINE_PATTERN = re.compile(r"\\UnicodeMathSymbol{\"(.+)}{\\([^\s]+)\s*}{\\(.+)}{.
 
 if __name__ == '__main__':
     with open(OUTPUT_NANE_0, 'w', encoding='utf-8') as output_glyphset:
+        output_glyphset.write(".notdef" + OUTPUT_SEP)
+        output_glyphset.write("space" + OUTPUT_SEP)
         # unicode-math-table 缺少 ASCII 中的字母和数字
         for i in range(0x20, 0x7f):
             output_glyphset.write("uni00%s" % hex(i)[2:].upper() + OUTPUT_SEP)
@@ -55,18 +57,18 @@ if __name__ == '__main__':
                                 if gid == 'uni003A':
                                     for i in range(0x30, 0x3a):
                                         curr_gid = "uni00%s" % hex(i)[2:].upper()
-                                        output_glyphset_gsub.write("%s=%s.st%s%s=%s.sts%s" % (curr_gid, curr_gid, OUTPUT_SEP, curr_gid, curr_gid, OUTPUT_SEP))
+                                        output_glyphset_gsub.write("%s.st%s%s.sts%s" % (gid, OUTPUT_SEP, gid, OUTPUT_SEP))
                                 elif gid == 'uni005B':
                                     for i in range(0x41, 0x5b):
                                         curr_gid = "uni00%s" % hex(i)[2:].upper()
-                                        output_glyphset_gsub.write("%s=%s.st%s%s=%s.sts%s" % (curr_gid, curr_gid, OUTPUT_SEP, curr_gid, curr_gid, OUTPUT_SEP))
+                                        output_glyphset_gsub.write("%s.st%s%s.sts%s" % (gid, OUTPUT_SEP, gid, OUTPUT_SEP))
                                 elif gid == 'uni007B':
                                     output_glyphset_gsub_add_bool = False
                                     for i in range(0x61, 0x7b):
                                         curr_gid = "uni00%s" % hex(i)[2:].upper()
-                                        output_glyphset_gsub.write("%s=%s.st%s%s=%s.sts%s" % (curr_gid, curr_gid, OUTPUT_SEP, curr_gid, curr_gid, OUTPUT_SEP))
+                                        output_glyphset_gsub.write("%s.st%s%s.sts%s" % (gid, OUTPUT_SEP, gid, OUTPUT_SEP))
                             # 用来支持数学排版的 glyphset，用于 GSUB 或 MATH 表
-                            write_gsub = output_glyphset_gsub.write("%s=%s.st%s%s=%s.sts%s" % (gid, gid, OUTPUT_SEP, gid, gid, OUTPUT_SEP))
+                            write_gsub = output_glyphset_gsub.write("%s.st%s%s.sts%s" % (gid, OUTPUT_SEP, gid, OUTPUT_SEP))
                             match math_class_str:
                                 case "mathord":
                                     write_gsub
